@@ -1,4 +1,3 @@
-" Settings
 set number		      		  " show number of lines	
 set nocompatible              " be iMproved, required
 set hidden
@@ -6,18 +5,18 @@ set smartindent
 set lines=999 columns=999
 set clipboard=unnamedplus     " poder copiar desde fuera
 set tabstop=4		      	  " tabs long
-:set guioptions-=m  		  " remove menu bar
-:set guioptions-=T  		  " remove toolbar
-:set guioptions-=r  		  " remove right-hand scroll bar
-:set guioptions-=L            " remove left-hand scroll bar
-:set lines=999 columns=999
-filetype off                  " required
+set guioptions-=m  		  " remove menu bar
+set guioptions-=T  		  " remove toolbar
+set guioptions-=r  		  " remove right-hand scroll bar
+set guioptions-=L            " remove left-hand scroll bar
+set lines=999 columns=999
+filetype off
 
-" =================================KEYMAP=================================                                                                                
-map <F2> :echo 'Current time is ' . strftime('%c')<CR>
-map <F6> :setlocal spell! spelllang=en_us<CR>
+" ===============KEYMAP
+map <F6> :setlocal spell! spelllang=es_es<CR>
 map <Space> <leader>
 map <Leader>q :qall<CR>
+map <Leader>s :wqall<CR>
 
 " Alternative modes for switch nmode
 imap kj <Esc>
@@ -51,13 +50,7 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeDirArrows=0
 map <C-t> :NERDTreeToggle<CR>
 
-
-
-
-
-" set the runtime path to include Vundle and initialize
-" set the runtime path to include Vundle and initialize
-
+let g:pymode_python = 'python3'
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -79,8 +72,14 @@ Plugin 'flazz/vim-colorschemes'
 
 Plugin 'SirVer/ultisnips'
 
+Plugin 'chriskempson/base16-vim'
+
 " Status bar on bottom
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
+
+" Plugin 'tell-k/vim-autopep8'
+
+Plugin 'python-mode/python-mode'
 
 " === Syntax plugins
 Plugin 'tpope/vim-surround'
@@ -94,27 +93,37 @@ Plugin 'python-rope/rope'
 Plugin 'python-rope/ropemode'
 Plugin 'python-rope/ropevim'
 Plugin 'klen/pylama'
+Plugin 'vim-scripts/clips.vim'
 
-" =======================================================================================
+
+" ===================================================================
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
-
-" Load tree at vim start and not focusing tree window
-" autocmd vimenter * NERDTree
-" autocmd vimenter * wincmd p
+let base16colorspace=256  " Access colors present in 256 colorspace
 
 " Colorscheme using atm
-colorscheme molokai
+" colorscheme base16-default-dark
+colorscheme base16-default-dark 
 
-" ==== snippets
-" If you want :UltiSnipsEdit to split your window.
+" UltiSnippets
+let g:UltiSnipsExpandTrigger="<S-tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+" YouCompleteMe
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+let g:ycm_key_list_stop_completion = ['<C-Space>']
 
 " Syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+
+" Load tree at start and not focusing tree window
+" autocmd vimenter * NERDTree
+" autocmd vimenter * wincmd p
